@@ -6,7 +6,8 @@ public class Destroyer : MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D other) {
 
 		if (other.tag == "Player") {
-			Debug.Break ();
+			//Debug.Break ();
+			Application.LoadLevel(1); //You can pass a name of the scene in quotes but it's fater to pass a number (yay!)
 			return;
 		}
 
