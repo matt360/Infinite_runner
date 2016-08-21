@@ -7,7 +7,7 @@ namespace UnityStandardAssets._2D
     {
         [SerializeField] private float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
         [SerializeField] private float m_JumpForce = 400f;                  // Amount of force added when the player jumps.
-		[Range(0, 1)][SerializeField] private float m_CrouchSpeed = .36f;  // Amount of maxSpeed applied to crouching movement. 1 = 100%
+		[Range(0, 1)][SerializeField] private float m_CrouchSpeed = 1f;  // Amount of maxSpeed applied to crouching movement. 1 = 100%
         [SerializeField] private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
         [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
 
@@ -20,6 +20,7 @@ namespace UnityStandardAssets._2D
         private Rigidbody2D m_Rigidbody2D;
         private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 		private bool doubleJump = false;
+		public Collider2D enemyCollider;
 
         private void Awake()
         {
@@ -29,7 +30,6 @@ namespace UnityStandardAssets._2D
             m_Anim = GetComponent<Animator>();
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
         }
-
 
         private void FixedUpdate()
         {
@@ -53,8 +53,10 @@ namespace UnityStandardAssets._2D
         }
 
 
-        public void Move(float move, bool crouch, bool jump)
+		public void Move(float move, bool crouch, bool jump, bool dodge)
         {
+			// Set whether or not the character is crouching in the animator
+			m_Anim.SetBool("Crouch", crouch);
             // If crouching, check to see if the character can stand up
             if (!crouch && m_Anim.GetBool("Crouch"))
             {
@@ -64,21 +66,25 @@ namespace UnityStandardAssets._2D
                     crouch = true;
                 }
             }
-
-            // Set whether or not the character is crouching in the animator
-            m_Anim.SetBool("Crouch", crouch);
+				
+			// Set whether or not the character is dodging in the animator
+			m_Anim.SetBool("Dodge", dodge);
+			// If dodging, turn of the collider or ignore oponents, we'll see
+//			if (dodge && m_Anim.GetBool ("Dodge")) {
+//				
+//			}
 
             //only control the player if grounded or airControl is turned on
             if (m_Grounded || m_AirControl)
             {
                 // Reduce the speed if crouching by the crouchSpeed multiplier
-                move = (crouch ? move*m_CrouchSpeed : move);
+                move = (crouch ? move * m_CrouchSpeed : move);
 
                 // The Speed animator parameter is set to the absolute value of the horizontal input.
                 m_Anim.SetFloat("Speed", Mathf.Abs(move));
 
                 // Move the character
-                m_Rigidbody2D.velocity = new Vector2(move*m_MaxSpeed, m_Rigidbody2D.velocity.y);
+                m_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed, m_Rigidbody2D.velocity.y);
 
                 // If the input is moving the player right and the player is facing left...
                 if (move > 0 && !m_FacingRight)

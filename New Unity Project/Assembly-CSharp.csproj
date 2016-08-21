@@ -166,6 +166,7 @@
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\CameraFollowRunner.cs" />
      <Compile Include="Assets\Scripts\Destroyer.cs" />
+     <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\GameOverScript.cs" />
      <Compile Include="Assets\Scripts\HUDScript.cs" />
      <Compile Include="Assets\Scripts\PowerUp.cs" />
