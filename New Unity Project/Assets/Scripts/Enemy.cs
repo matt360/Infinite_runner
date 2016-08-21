@@ -4,6 +4,11 @@ using System.Collections;
 public class Enemy : MonoBehaviour {
 
 	private BoxCollider2D collider;
+	public float lifetime = 3f;
+
+	void Start() {
+		Destroy (this.gameObject, lifetime);
+	}
 
 	private void Awake() {
 		collider = GetComponent<BoxCollider2D> ();
