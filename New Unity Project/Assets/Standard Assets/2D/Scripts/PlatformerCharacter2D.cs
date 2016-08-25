@@ -20,12 +20,12 @@ namespace UnityStandardAssets._2D
         private Rigidbody2D m_Rigidbody2D;
         private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 		private bool doubleJump = false;
+		private bool gameOver = false;
 
 		void OnTriggerEnter2D (Collider2D other) {
-
 			if (other.tag == "Enemy") {
 				//Debug.Break ();
-				Application.LoadLevel(1); //You can pass a name of the scene in quotes but it's fater to pass a number (yay!)
+				gameOver = true;
 				return;
 			}
 		}
@@ -41,6 +41,7 @@ namespace UnityStandardAssets._2D
 
         private void FixedUpdate()
         {
+			Debug.Log (m_Rigidbody2D.velocity);
             m_Grounded = false;
 
             // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
@@ -58,69 +59,63 @@ namespace UnityStandardAssets._2D
 
 			if (m_Grounded) 
 				doubleJump = false;
+	
+			if (m_Rigidbody2D.velocity == new Vector2(0f, 0f)) {
+				Application.LoadLevel(1); //You can pass a name of the scene in quotes but it's fater to pass a number (yay!)
+			}
         }
 
 
 		public void Move(float move, bool crouch, bool jump, bool dodge)
-        {
+		{
 			// Set whether or not the character is crouching in the animator
-			m_Anim.SetBool("Crouch", crouch);
-            // If crouching, check to see if the character can stand up
-            if (!crouch && m_Anim.GetBool("Crouch"))
-            {
-                // If the character has a ceiling preventing them from standing up, keep them crouching
-                if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround))
-                {
-                    crouch = true;
-                }
-            }
-				
+			m_Anim.SetBool ("Crouch", crouch);
+			// If crouching, check to see if the character can stand up
+			if (!crouch && m_Anim.GetBool ("Crouch")) {
+				// If the character has a ceiling preventing them from standing up, keep them crouching
+				if (Physics2D.OverlapCircle (m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround)) {
+					crouch = true;
+				}
+			}
+			
 			// Set whether or not the character is dodging in the animator
-			m_Anim.SetBool("Dodge", dodge);
-			// If dodging, turn of the collider or ignore oponents, we'll see
-//			if (dodge && m_Anim.GetBool ("Dodge")) {
-//				
-//			}
+			m_Anim.SetBool ("Dodge", dodge);
 
-            //only control the player if grounded or airControl is turned on
-            if (m_Grounded || m_AirControl)
-            {
-                // Reduce the speed if crouching by the crouchSpeed multiplier
-                move = (crouch ? move * m_CrouchSpeed : move);
+			//only control the player if grounded or airControl is turned on
+			if (m_Grounded || m_AirControl) {
+				// Reduce the speed if crouching by the crouchSpeed multiplier
+				move = (crouch ? move * m_CrouchSpeed : move);
 
-                // The Speed animator parameter is set to the absolute value of the horizontal input.
-                m_Anim.SetFloat("Speed", Mathf.Abs(move));
+				// The Speed animator parameter is set to the absolute value of the horizontal input.
+				m_Anim.SetFloat ("Speed", Mathf.Abs (move));
 
-                // Move the character
-                m_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed, m_Rigidbody2D.velocity.y);
+				// Move the character
+				m_Rigidbody2D.velocity = new Vector2 (move * m_MaxSpeed, m_Rigidbody2D.velocity.y);
 
-                // If the input is moving the player right and the player is facing left...
-                if (move > 0 && !m_FacingRight)
-                {
-                    // ... flip the player.
-                    Flip();
-                }
-                    // Otherwise if the input is moving the player left and the player is facing right...
-                else if (move < 0 && m_FacingRight)
-                {
-                    // ... flip the player.
-                    Flip();
-                }
-            }
-            // If the player should jump...
-            if ( (m_Grounded || !doubleJump) && jump ) //&& m_Anim.GetBool("Ground"))
-            {
-                // Add a vertical force to the player.
+				// If the input is moving the player right and the player is facing left...
+				if (move > 0 && !m_FacingRight) {
+					// ... flip the player.
+					Flip ();
+				}
+                // Otherwise if the input is moving the player left and the player is facing right...
+            else if (move < 0 && m_FacingRight) {
+					// ... flip the player.
+					Flip ();
+				}
+			}
+			// If the player should jump...
+			if ((m_Grounded || !doubleJump) && jump) { //&& m_Anim.GetBool("Ground"))
+				// Add a vertical force to the player.
 //                m_Grounded = false;
 //                m_Anim.SetBool("Ground", false);
 
-				m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0f);
+				m_Rigidbody2D.velocity = new Vector2 (m_Rigidbody2D.velocity.x, 0f);
 
-                m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+				m_Rigidbody2D.AddForce (new Vector2 (0f, m_JumpForce));
 
-				if(!m_Grounded) 
+				if (!m_Grounded)
 					doubleJump = true;
-            }
+			}
         }
 			
         private void Flip()
@@ -133,5 +128,13 @@ namespace UnityStandardAssets._2D
             theScale.x *= -1;
             transform.localScale = theScale;
         }
+
+		public bool GetGameOver() {
+			return gameOver;
+		}
+
+		public Rigidbody2D GetRigidbody2D() {
+			return m_Rigidbody2D;
+		}
     }
 }
