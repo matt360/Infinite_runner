@@ -20,7 +20,15 @@ namespace UnityStandardAssets._2D
         private Rigidbody2D m_Rigidbody2D;
         private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 		private bool doubleJump = false;
-		public Collider2D enemyCollider;
+
+		void OnTriggerEnter2D (Collider2D other) {
+
+			if (other.tag == "Enemy") {
+				//Debug.Break ();
+				Application.LoadLevel(1); //You can pass a name of the scene in quotes but it's fater to pass a number (yay!)
+				return;
+			}
+		}
 
         private void Awake()
         {
@@ -114,8 +122,7 @@ namespace UnityStandardAssets._2D
 					doubleJump = true;
             }
         }
-
-
+			
         private void Flip()
         {
             // Switch the way the player is labelled as facing.
