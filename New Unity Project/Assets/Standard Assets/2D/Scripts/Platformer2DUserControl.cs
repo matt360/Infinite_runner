@@ -9,10 +9,15 @@ namespace UnityStandardAssets._2D
     {
         private PlatformerCharacter2D m_Character;
         private bool m_Jump;
+		private float nextSlide;
+		public float slideRate;
+		bool crouch;
 
         private void Awake()
         {
             m_Character = GetComponent<PlatformerCharacter2D>();
+			crouch = false;
+//			nextSlide = Time.time + slideRate;
         }
 
 
@@ -28,9 +33,15 @@ namespace UnityStandardAssets._2D
 
         private void FixedUpdate()
 		{
-			Debug.Log (m_Character.GetGameOver());
+//			Debug.Log (m_Character.GetGameOver());
             // Read the inputs.
-            bool crouch = Input.GetKey(KeyCode.LeftControl); // If left control pressed, crouch = true
+			bool crouch = Input.GetKey (KeyCode.LeftControl); // If left control pressed, crouch = true
+//			if (Time.time > nextSlide) {
+//				nextSlide = Time.time + slideRate;
+//				crouch = true;
+//			} else {
+//				crouch = false;
+//			}
 			bool dodge = Input.GetKey (KeyCode.LeftAlt); 	 // If left alt pressed, dodge = true
 //            float h = CrossPlatformInputManager.GetAxis("Horizontal");
             // Pass all parameters to the character control script.
@@ -43,3 +54,5 @@ namespace UnityStandardAssets._2D
         }
     }
 }
+
+// pass crouch = true only for a couple of second
