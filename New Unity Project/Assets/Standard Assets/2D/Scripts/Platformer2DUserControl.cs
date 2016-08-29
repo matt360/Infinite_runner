@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using System.Collections;
 using UnityStandardAssets.CrossPlatformInput;
 
 namespace UnityStandardAssets._2D
@@ -9,15 +10,15 @@ namespace UnityStandardAssets._2D
     {
         private PlatformerCharacter2D m_Character;
         private bool m_Jump;
-		private float nextSlide;
-		public float slideRate;
 		bool crouch;
+		bool slide;
+		[SerializeField] private float slideTime = 1.5f;
 
         private void Awake()
         {
             m_Character = GetComponent<PlatformerCharacter2D>();
 			crouch = false;
-//			nextSlide = Time.time + slideRate;
+			slide = false;
         }
 
 
@@ -33,15 +34,14 @@ namespace UnityStandardAssets._2D
 
         private void FixedUpdate()
 		{
-//			Debug.Log (m_Character.GetGameOver());
-            // Read the inputs.
-			bool crouch = Input.GetKey (KeyCode.LeftControl); // If left control pressed, crouch = true
-//			if (Time.time > nextSlide) {
-//				nextSlide = Time.time + slideRate;
-//				crouch = true;
-//			} else {
-//				crouch = false;
-//			}
+			bool slide = Input.GetButton ("Fire1");
+			if (slide && m_Character.GetGrounded()) {
+				StartCoroutine (Slide ());
+			}
+			if (!m_Character.GetGrounded()) {
+				crouch = false;
+			}
+
 			bool dodge = Input.GetKey (KeyCode.LeftAlt); 	 // If left alt pressed, dodge = true
 //            float h = CrossPlatformInputManager.GetAxis("Horizontal");
             // Pass all parameters to the character control script.
@@ -52,6 +52,12 @@ namespace UnityStandardAssets._2D
 			}
             m_Jump = false;
         }
+
+		IEnumerator Slide() {
+			crouch = true;
+			yield return new WaitForSeconds(slideTime);
+			crouch = false;
+		}
     }
 }
 

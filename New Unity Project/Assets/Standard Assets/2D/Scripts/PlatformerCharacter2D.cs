@@ -21,6 +21,8 @@ namespace UnityStandardAssets._2D
         private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 		private bool doubleJump = false;
 		private bool gameOver = false;
+//		private float nextSlide;
+//		public float slideRate;
 
 		void OnTriggerEnter2D (Collider2D other) {
 			if (other.tag == "Enemy") {
@@ -72,6 +74,7 @@ namespace UnityStandardAssets._2D
 			m_Anim.SetBool ("Crouch", crouch);
 			// If crouching, check to see if the character can stand up
 			if (!crouch && m_Anim.GetBool ("Crouch")) {
+//				nextSlide = Time.time + slideRate;
 				// If the character has a ceiling preventing them from standing up, keep them crouching
 				if (Physics2D.OverlapCircle (m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround)) {
 					crouch = true;
@@ -135,6 +138,10 @@ namespace UnityStandardAssets._2D
 
 		public Rigidbody2D GetRigidbody2D() {
 			return m_Rigidbody2D;
+		}
+
+		public bool GetGrounded() {
+			return m_Grounded;
 		}
     }
 }
