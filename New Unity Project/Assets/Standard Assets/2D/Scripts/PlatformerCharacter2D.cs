@@ -43,9 +43,7 @@ namespace UnityStandardAssets._2D
 
         private void FixedUpdate()
         {
-			Debug.Log (m_Rigidbody2D.velocity);
             m_Grounded = false;
-
             // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
             // This can be done using layers instead but Sample Assets will not overwrite your project settings.
             Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
@@ -116,8 +114,9 @@ namespace UnityStandardAssets._2D
 
 				m_Rigidbody2D.AddForce (new Vector2 (0f, m_JumpForce));
 
-				if (!m_Grounded)
+				if (!m_Grounded) {
 					doubleJump = true;
+				}
 			}
         }
 			
@@ -142,6 +141,10 @@ namespace UnityStandardAssets._2D
 
 		public bool GetGrounded() {
 			return m_Grounded;
+		}
+
+		public bool GetDoubleJump() {
+			return doubleJump;
 		}
     }
 }

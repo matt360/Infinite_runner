@@ -9,26 +9,36 @@ namespace UnityStandardAssets._2D
     public class Platformer2DUserControl : MonoBehaviour
     {
         private PlatformerCharacter2D m_Character;
-        private bool m_Jump;
-		bool crouch;
-		bool slide;
+		private bool m_Jump = false;
+		bool crouch = false;
+		bool slide = false;
+		bool grounded;
 		[SerializeField] private float slideTime = 1.5f;
+		[SerializeField] private AudioClip jumpSound;
+		[SerializeField] private AudioClip deadSound;
+		[SerializeField] private AudioClip slideSound;
+		private AudioSource audioSource;
 
         private void Awake()
         {
+			audioSource = GetComponent<AudioSource> ();
             m_Character = GetComponent<PlatformerCharacter2D>();
-			crouch = false;
-			slide = false;
         }
 
 
         private void Update()
-        {
-            if (!m_Jump)
-            {
-                // Read the jump input in Update so button presses aren't missed.
-                m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
-            }
+		{
+			if (!m_Jump) {
+				// Read the jump input in Update so button presses aren't missed.
+				m_Jump = CrossPlatformInputManager.GetButtonDown ("Jump");
+				if (m_Jump) {
+					audioSource.clip = jumpSound;
+					audioSource.Play();
+				}
+			}
+			if (audioSource.clip == slideSound && !m_Character.GetGrounded()) {
+				audioSource.Stop ();
+			}
         }
 
 
@@ -55,10 +65,11 @@ namespace UnityStandardAssets._2D
 
 		IEnumerator Slide() {
 			crouch = true;
+			audioSource.clip = slideSound;
+			audioSource.Play ();
 			yield return new WaitForSeconds(slideTime);
+			audioSource.Stop ();
 			crouch = false;
 		}
     }
 }
-
-// pass crouch = true only for a couple of second
