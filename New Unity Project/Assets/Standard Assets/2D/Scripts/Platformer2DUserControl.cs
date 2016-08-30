@@ -61,6 +61,9 @@ namespace UnityStandardAssets._2D
             // Pass all parameters to the character control script.
 			if (m_Character.GetGameOver ()) {
 				m_Character.Move (0f, false, false, false);
+				if (Input.GetKey (KeyCode.R)) {
+						Application.LoadLevel(0);
+				}
 			} else {
 				m_Character.Move (1f, crouch, m_Jump, dodge);
 			}
