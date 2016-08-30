@@ -106,9 +106,10 @@ namespace UnityStandardAssets._2D
 			}
 			// If the player should jump...
 			if ((m_Grounded || !doubleJump) && jump) { //&& m_Anim.GetBool("Ground"))
+//				      0     ||      0       &&   1
 				// Add a vertical force to the player.
-//                m_Grounded = false;
-//                m_Anim.SetBool("Ground", false);
+                m_Grounded = true;
+                m_Anim.SetBool("Ground", false);
 
 				m_Rigidbody2D.velocity = new Vector2 (m_Rigidbody2D.velocity.x, 0f);
 
@@ -141,10 +142,6 @@ namespace UnityStandardAssets._2D
 
 		public bool GetGrounded() {
 			return m_Grounded;
-		}
-
-		public bool GetDoubleJump() {
-			return doubleJump;
 		}
     }
 }

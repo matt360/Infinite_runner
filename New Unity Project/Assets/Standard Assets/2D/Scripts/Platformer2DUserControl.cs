@@ -29,7 +29,6 @@ namespace UnityStandardAssets._2D
 
         private void Update()
 		{
-			Debug.Log (jumpCounter);
 			if (jumpCounter >= 2 && m_Character.GetGrounded ())
 				jumpCounter = 0;
 			if (!m_Jump && jumpCounter < 2) {
