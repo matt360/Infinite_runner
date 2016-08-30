@@ -56,7 +56,6 @@
      <Compile Include="Assets\AmplifyColor\Plugins\Runtime\VersionInfo.cs" />
      <Compile Include="Assets\AmplifyColor\Plugins\Runtime\VolumeEffects.cs" />
      <Compile Include="Assets\AmplifyColor\Plugins\Runtime\VolumeEffectsFlags.cs" />
-     <Compile Include="Assets\AudioManager.cs" />
      <Compile Include="Assets\Demo\Misc\AutoMovimientoMedusa.cs" />
      <Compile Include="Assets\Demo\Misc\LineRenderSmoke.cs" />
      <Compile Include="Assets\Demo\Misc\StartDemo.cs" />
