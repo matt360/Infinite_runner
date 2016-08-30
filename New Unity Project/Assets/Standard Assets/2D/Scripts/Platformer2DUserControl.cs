@@ -18,6 +18,7 @@ namespace UnityStandardAssets._2D
 		[SerializeField] private AudioClip deadSound;
 		[SerializeField] private AudioClip slideSound;
 		private AudioSource audioSource;
+		private int jumpCounter = 0;
 
         private void Awake()
         {
@@ -28,12 +29,16 @@ namespace UnityStandardAssets._2D
 
         private void Update()
 		{
-			if (!m_Jump) {
+			Debug.Log (jumpCounter);
+			if (jumpCounter >= 2 && m_Character.GetGrounded ())
+				jumpCounter = 0;
+			if (!m_Jump && jumpCounter < 2) {
 				// Read the jump input in Update so button presses aren't missed.
 				m_Jump = CrossPlatformInputManager.GetButtonDown ("Jump");
 				if (m_Jump) {
 					audioSource.clip = jumpSound;
 					audioSource.Play();
+					jumpCounter++;
 				}
 			}
 			if (audioSource.clip == slideSound && !m_Character.GetGrounded()) {
