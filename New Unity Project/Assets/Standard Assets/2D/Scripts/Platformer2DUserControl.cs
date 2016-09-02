@@ -29,8 +29,9 @@ namespace UnityStandardAssets._2D
 
         private void Update()
 		{
-			if (jumpCounter >= 2 && m_Character.GetGrounded ())
+			if (jumpCounter >= 2) {
 				jumpCounter = 0;
+			}
 			if (!m_Jump && jumpCounter < 2) {
 				// Read the jump input in Update so button presses aren't missed.
 				m_Jump = CrossPlatformInputManager.GetButtonDown ("Jump");

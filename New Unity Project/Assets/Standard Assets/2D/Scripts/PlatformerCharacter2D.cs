@@ -41,6 +41,10 @@ namespace UnityStandardAssets._2D
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
         }
 
+		void Update() {
+			Debug.Log (m_Grounded);
+		}
+
         private void FixedUpdate()
         {
             m_Grounded = false;
@@ -60,9 +64,9 @@ namespace UnityStandardAssets._2D
 			if (m_Grounded) 
 				doubleJump = false;
 	
-			if (m_Rigidbody2D.velocity == new Vector2(0f, 0f)) {
-				Application.LoadLevel(1); //You can pass a name of the scene in quotes but it's fater to pass a number (yay!)
-			}
+//			if (m_Rigidbody2D.velocity == new Vector2(0f, 0f)) {
+//				Application.LoadLevel(1); //You can pass a name of the scene in quotes but it's fater to pass a number (yay!)
+//			}
         }
 
 
@@ -108,7 +112,6 @@ namespace UnityStandardAssets._2D
 			if ((m_Grounded || !doubleJump) && jump) { //&& m_Anim.GetBool("Ground"))
 //				      0     ||      0       &&   1
 				// Add a vertical force to the player.
-                m_Grounded = true;
                 m_Anim.SetBool("Ground", false);
 
 				m_Rigidbody2D.velocity = new Vector2 (m_Rigidbody2D.velocity.x, 0f);
