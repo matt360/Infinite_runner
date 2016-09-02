@@ -15,20 +15,26 @@ namespace UnityStandardAssets._2D
 		bool slide = false;
 		bool grounded;
 		[SerializeField] private float slideTime = 1.5f;
+
 		[SerializeField] private AudioClip jumpSound;
 		[SerializeField] private AudioClip deadSound;
 		[SerializeField] private AudioClip slideSound;
-		[SerializeField] private Text gameOverText;
-		[SerializeField] private Text restartText;
 		private AudioSource audioSource;
+
+		public Canvas gameOverCanvas;
+		public Text gameOverText;
+		public Text restartText;
+
 		private int jumpCounter = 0;
 
         private void Awake()
         {
+			gameOverCanvas = gameOverCanvas.GetComponent<Canvas> ();
 			audioSource = GetComponent<AudioSource> ();
             m_Character = GetComponent<PlatformerCharacter2D>();
 			gameOverText.text = "";
 			restartText.text = "";
+			gameOverCanvas.enabled = false;
         }
 
 
@@ -66,13 +72,15 @@ namespace UnityStandardAssets._2D
 //            float h = CrossPlatformInputManager.GetAxis("Horizontal");
             // Pass all parameters to the character control script.
 			if (m_Character.GetGameOver ()) {
+				gameOverCanvas.enabled = true;
 				m_Character.Move (0f, false, false, false);
 				gameOverText.text = "GAME OVER";
 				restartText.text = "Press 'R' to restart";
 				if (Input.GetKey (KeyCode.R)) {
 						Application.LoadLevel(0);
 				}
-			} else {
+			} 
+			else {
 				m_Character.Move (1f, crouch, m_Jump, dodge);
 			}
             m_Jump = false;
