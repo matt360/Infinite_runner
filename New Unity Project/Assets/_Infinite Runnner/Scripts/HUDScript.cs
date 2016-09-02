@@ -5,14 +5,20 @@ using System.Collections;
 
 	public class HUDScript : MonoBehaviour {
 
+		public Rigidbody2D player;
 		float playerScore = 0f;
-		[SerializeField] private Text scoreText;
-		private PlatformerCharacter2D m_Character;
 
+		public Text scoreText;
+		
+//		void Awake () {
+//		
+//		}
+		
 		void Update () {
-			m_Character = GetComponent<PlatformerCharacter2D> ();
-			playerScore += Time.deltaTime;
-			scoreText.text = "Score: " + ((int)(playerScore * 100)).ToString();
+		if (player.velocity.x != 0) {
+				playerScore += Time.deltaTime;
+				scoreText.text = "Score: " + ((int)(playerScore * 100)).ToString ();
+			}
 		}
 
 		public void ChangeScore(int amount) { // to have bad blocks just pass a negative ammount
