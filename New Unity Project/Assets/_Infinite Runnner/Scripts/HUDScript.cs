@@ -10,10 +10,6 @@ using System.Collections;
 
 		public Text scoreText;
 		
-//		void Awake () {
-//		
-//		}
-		
 		void Update () {
 		if (player.velocity.x != 0) {
 				playerScore += Time.deltaTime;

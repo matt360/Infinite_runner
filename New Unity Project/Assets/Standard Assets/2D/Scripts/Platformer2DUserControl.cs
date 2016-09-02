@@ -69,15 +69,18 @@ using UnityStandardAssets.CrossPlatformInput;
 			bool dodge = Input.GetKey (KeyCode.LeftAlt); 	 // If left alt pressed, dodge = true
 //            float h = CrossPlatformInputManager.GetAxis("Horizontal");
             // Pass all parameters to the character control script.
-			if (m_Character.GetGameOver ()) {
-				gameOverCanvas.enabled = true;
-				m_Character.Move (0f, false, false, false);
-				gameOverText.text = "GAME OVER";
-				restartText.text = "Press 'R' to restart";
-				if (Input.GetKey (KeyCode.R)) {
-						Application.LoadLevel(0);
-				}
-			} 
+		if (m_Character.GetGameOver ()) {
+			gameOverCanvas.enabled = true;
+			m_Character.Move (0f, false, false, false);
+			gameOverText.text = "GAME OVER";
+			restartText.text = "Press 'R' to restart";
+			if (Input.GetKey (KeyCode.R)) {
+				Application.LoadLevel (0);
+			}
+			if (Input.GetKey ("escape")) {
+				Application.Quit ();
+			}
+		}
 		if (!m_Character.GetGameOver()) {
 				m_Character.Move (1f, crouch, m_Jump, dodge);
 			}
