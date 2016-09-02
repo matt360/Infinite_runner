@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using UnityStandardAssets.CrossPlatformInput;
 
@@ -17,6 +18,8 @@ namespace UnityStandardAssets._2D
 		[SerializeField] private AudioClip jumpSound;
 		[SerializeField] private AudioClip deadSound;
 		[SerializeField] private AudioClip slideSound;
+		[SerializeField] private Text gameOverText;
+		[SerializeField] private Text restartText;
 		private AudioSource audioSource;
 		private int jumpCounter = 0;
 
@@ -24,6 +27,8 @@ namespace UnityStandardAssets._2D
         {
 			audioSource = GetComponent<AudioSource> ();
             m_Character = GetComponent<PlatformerCharacter2D>();
+			gameOverText.text = "";
+			restartText.text = "";
         }
 
 
@@ -62,6 +67,8 @@ namespace UnityStandardAssets._2D
             // Pass all parameters to the character control script.
 			if (m_Character.GetGameOver ()) {
 				m_Character.Move (0f, false, false, false);
+				gameOverText.text = "GAME OVER";
+				restartText.text = "Press 'R' to restart";
 				if (Input.GetKey (KeyCode.R)) {
 						Application.LoadLevel(0);
 				}
