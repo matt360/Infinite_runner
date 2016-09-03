@@ -4,7 +4,8 @@ using UnityEngine.UI;
 using System.Collections;
 using UnityStandardAssets.CrossPlatformInput;
 
-//    [RequireComponent(typeof (PlatformerCharacter2D))]
+
+    [RequireComponent(typeof (PlatformerCharacter2D))]
     public class Platformer2DUserControl : MonoBehaviour
     {
         private PlatformerCharacter2D m_Character;
@@ -81,9 +82,9 @@ using UnityStandardAssets.CrossPlatformInput;
 				Application.Quit ();
 			}
 		}
-		if (!m_Character.GetGameOver()) {
+//		if (!m_Character.GetGameOver()) {
 				m_Character.Move (1f, crouch, m_Jump, dodge);
-			}
+//			}
             m_Jump = false;
         }
 
