@@ -44,7 +44,7 @@ public class MenuController : MonoBehaviour {
 			MainMenuCanvas.enabled = true;
 			InstructionsCanvas.enabled = false;
 		}	// Start Game
-			if (MainMenuCanvas.isActiveAndEnabled && playerController.GetJump()) {
+			if (MainMenuCanvas.isActiveAndEnabled && CrossPlatformInputManager.GetButtonDown ("Jump")) {
 			MainMenuCanvas.enabled = false;
 			InstructionsCanvas.enabled = false;
 		}   // Display Instructions

@@ -85,7 +85,8 @@ namespace UnityStandardAssets {
 				Application.Quit ();
 			}
 		}
-			if (!m_Character.GetGameOver() && !menuController.MainMenuCanvas.isActiveAndEnabled) {
+			if (!m_Character.GetGameOver() && !menuController.MainMenuCanvas.isActiveAndEnabled 
+				&& !menuController.InstructionsCanvas.isActiveAndEnabled) {
 				m_Character.Move (1f, crouch, m_Jump, dodge);
 			}
             m_Jump = false;
