@@ -4,11 +4,12 @@ using UnityEngine.UI;
 using System.Collections;
 using UnityStandardAssets.CrossPlatformInput;
 
-
+namespace UnityStandardAssets {
     [RequireComponent(typeof (PlatformerCharacter2D))]
     public class Platformer2DUserControl : MonoBehaviour
     {
         private PlatformerCharacter2D m_Character;
+		private MenuController menuController;
 		private bool m_Jump = false;
 		bool crouch = false;
 		bool slide = false;
@@ -31,6 +32,7 @@ using UnityStandardAssets.CrossPlatformInput;
 			gameOverCanvas = gameOverCanvas.GetComponent<Canvas> ();
 			audioSource = GetComponent<AudioSource> ();
             m_Character = GetComponent<PlatformerCharacter2D>();
+			menuController = GetComponent<MenuController> ();
 			gameOverText.text = "";
 			restartText.text = "";
 			gameOverCanvas.enabled = false;
@@ -97,3 +99,4 @@ using UnityStandardAssets.CrossPlatformInput;
 			crouch = false;
 		}
     }
+}
