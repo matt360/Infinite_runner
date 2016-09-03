@@ -40,10 +40,6 @@ namespace UnityStandardAssets {
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
         }
 
-		void Update() {
-			Debug.Log (m_Grounded);
-		}
-
         private void FixedUpdate()
         {
             m_Grounded = false;

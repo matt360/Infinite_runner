@@ -20,6 +20,8 @@ public class MenuController : MonoBehaviour {
 	public Text InstructionsChildText;
 	public Text CreditsChildText;
 
+	public Canvas GameOverCanvas;
+
 	void Start () {
 		
 		playerController = GetComponent<Platformer2DUserControl> ();
@@ -33,6 +35,8 @@ public class MenuController : MonoBehaviour {
 		InstructionsCanvas = InstructionsCanvas.GetComponent<Canvas> ();
 		InstructionsChildText = InstructionsChildText.GetComponent<Text> ();
 		CreditsChildText = CreditsChildText.GetComponent<Text> ();
+
+		GameOverCanvas = GameOverCanvas.GetComponent<Canvas> ();
 		
 		MainMenuCanvas.enabled = true;
 		InstructionsCanvas.enabled = false;
@@ -40,7 +44,7 @@ public class MenuController : MonoBehaviour {
 	
 
 	void Update () {
-		if (Input.GetKey ("escape")) { // Go back to main menu
+			if (Input.GetKey ("escape")) { // Go back to main menu
 			MainMenuCanvas.enabled = true;
 			InstructionsCanvas.enabled = false;
 		}	// Start Game
