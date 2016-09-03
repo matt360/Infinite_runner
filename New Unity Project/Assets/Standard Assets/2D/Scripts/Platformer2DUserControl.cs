@@ -82,9 +82,9 @@ using UnityStandardAssets.CrossPlatformInput;
 				Application.Quit ();
 			}
 		}
-//		if (!m_Character.GetGameOver()) {
+		if (!m_Character.GetGameOver()) {
 				m_Character.Move (1f, crouch, m_Jump, dodge);
-//			}
+			}
             m_Jump = false;
         }
 
