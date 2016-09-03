@@ -25,5 +25,9 @@ namespace UnityStandardAssets {
 			Instantiate (obj [Random.Range (0, obj.Length)], transform.position, Quaternion.identity);
 				Invoke ("Spawn", Random.Range (spawnMin, spawnMax)); // Invoke the function Spawn() by itself (Spawn() recursion);
 		}
+
+//		void OnDisable() {
+//			return;
+//		}
 	}
 }

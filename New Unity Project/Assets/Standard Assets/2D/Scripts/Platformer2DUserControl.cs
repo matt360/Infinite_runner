@@ -26,6 +26,7 @@ namespace UnityStandardAssets {
 		public Canvas gameOverCanvas;
 		public Text gameOverText;
 		public Text restartText;
+		public Text exitText;
 
 		private int jumpCounter = 0;
 
@@ -37,6 +38,8 @@ namespace UnityStandardAssets {
 			menuController = mainMenuControllerObject.GetComponent<MenuController> ();
 			gameOverText.text = "";
 			restartText.text = "";
+			exitText.text = "";
+
 			gameOverCanvas.enabled = false;
         }
 
@@ -80,6 +83,7 @@ namespace UnityStandardAssets {
 			m_Character.Move (0f, false, false, false);
 			gameOverText.text = "GAME OVER";
 			restartText.text = "Press 'R' to restart";
+			exitText.text = "EXIT GAME";
 			if (Input.GetKey (KeyCode.R)) {
 //				Application.LoadLevel (0);
 				SceneManager.LoadScene(0);
