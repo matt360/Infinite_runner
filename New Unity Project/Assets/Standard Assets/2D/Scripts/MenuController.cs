@@ -44,7 +44,7 @@ public class MenuController : MonoBehaviour {
 	
 
 	void Update () {
-			if (Input.GetKey ("escape")) { // Go back to main menu
+			if (!GameOverCanvas.isActiveAndEnabled && Input.GetKey ("escape")) { // Go back to main menu
 			MainMenuCanvas.enabled = true;
 			InstructionsCanvas.enabled = false;
 		}	// Start Game

@@ -84,7 +84,7 @@ namespace UnityStandardAssets {
 //				Application.LoadLevel (0);
 				SceneManager.LoadScene(0);
 			}
-			if (Input.GetKey ("escape")) {
+			if (Input.GetKey (KeyCode.Q)) {
 				Application.Quit ();
 			}
 		}
