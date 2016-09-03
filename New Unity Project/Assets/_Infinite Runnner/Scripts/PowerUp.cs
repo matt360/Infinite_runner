@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class PowerUp : MonoBehaviour {
+	
 	HUDScript hud;
 
 	void OnTriggerEnter2D(Collider2D other) {
