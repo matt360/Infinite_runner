@@ -51,7 +51,8 @@ public class MenuController : MonoBehaviour {
 		if (MainMenuCanvas.isActiveAndEnabled && Input.GetKey (KeyCode.I)) {
 			MainMenuCanvas.enabled = false;
 			InstructionsCanvas.enabled = true;
-			InstructionsText.enabled = true;
+			InstructionsChildText.enabled = true;
+			CreditsChildText.enabled = false;
 		}	// Display Credits
 		if (MainMenuCanvas.isActiveAndEnabled && Input.GetKey (KeyCode.C)) {
 			MainMenuCanvas.enabled = false;
