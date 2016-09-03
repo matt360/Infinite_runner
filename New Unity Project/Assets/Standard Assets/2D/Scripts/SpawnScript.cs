@@ -20,12 +20,10 @@ namespace UnityStandardAssets {
 		// Use this for initialization
 		void Start () {
 			menuController = mainMenuControllerObject.GetComponent<MenuController> ();
-			if (!menuController.MainMenuCanvas.isActiveAndEnabled
-			    && !menuController.InstructionsCanvas.isActiveAndEnabled) {
+//			if (!menuController.MainMenuCanvas.isActiveAndEnabled
+//			    && !menuController.InstructionsCanvas.isActiveAndEnabled) {
 				Spawn ();
-			}
-			if (m_Character.GetGameOver ())
-				return;
+//			}
 		}
 
 		void Spawn() {
