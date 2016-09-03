@@ -161,7 +161,7 @@ ModelImporter:
     7400000: Default Take
     7400002: jumpPose
     7400004: run_001
-    7400006: trot
+    7400006: cute_trot
     9500000: //RootNode
     13700000: Cube
     13700002: Cube_003
@@ -706,7 +706,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: trot
+      name: cute_trot
       takeName: trot
       firstFrame: -1
       lastFrame: 39
@@ -716,8 +716,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
