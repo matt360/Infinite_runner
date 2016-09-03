@@ -8,6 +8,7 @@ namespace UnityStandardAssets {
     [RequireComponent(typeof (PlatformerCharacter2D))]
     public class Platformer2DUserControl : MonoBehaviour
     {
+		public GameObject mainMenuControllerObject;
         private PlatformerCharacter2D m_Character;
 		private MenuController menuController;
 		private bool m_Jump = false;
@@ -32,7 +33,7 @@ namespace UnityStandardAssets {
 			gameOverCanvas = gameOverCanvas.GetComponent<Canvas> ();
 			audioSource = GetComponent<AudioSource> ();
             m_Character = GetComponent<PlatformerCharacter2D>();
-			menuController = GetComponent<MenuController> ();
+			menuController = mainMenuControllerObject.GetComponent<MenuController> ();
 			gameOverText.text = "";
 			restartText.text = "";
 			gameOverCanvas.enabled = false;
@@ -84,7 +85,7 @@ namespace UnityStandardAssets {
 				Application.Quit ();
 			}
 		}
-		if (!m_Character.GetGameOver()) {
+			if (!m_Character.GetGameOver() && !menuController.MainMenuCanvas.isActiveAndEnabled) {
 				m_Character.Move (1f, crouch, m_Jump, dodge);
 			}
             m_Jump = false;
@@ -97,6 +98,10 @@ namespace UnityStandardAssets {
 			yield return new WaitForSeconds(slideTime);
 			audioSource.Stop ();
 			crouch = false;
+		}
+
+		public bool GetJump() {
+			return m_Jump;
 		}
     }
 }
