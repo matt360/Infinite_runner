@@ -158,7 +158,7 @@ ModelImporter:
     4300016: Sphere
     7400000: Default Take
     7400002: Armature_001Action
-    7400004: jumpPose
+    7400004: angryJumpPose
     7400006: run_angry
     7400008: trot
     9500000: //RootNode
@@ -533,7 +533,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 1
     - serializedVersion: 16
-      name: jumpPose
+      name: angryJumpPose
       takeName: jumpPose
       firstFrame: -1
       lastFrame: 0
