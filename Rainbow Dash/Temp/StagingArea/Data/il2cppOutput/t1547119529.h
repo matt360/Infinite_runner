@@ -1,0 +1,122 @@
+﻿#pragma once
+
+#include "il2cpp-config.h"
+
+#ifndef _MSC_VER
+# include <alloca.h>
+#else
+# include <malloc.h>
+#endif
+
+#include <stdint.h>
+
+struct t968488902;
+struct t3384818676;
+struct t1547119529;
+struct t1106661726;
+struct t437523947;
+struct t3533968274;
+struct t1177966580;
+struct t2054974122;
+struct t3937824918;
+struct t2246592261;
+struct t2246592261_marshaled;
+struct t27321462;
+struct t896427542;
+struct t284553113;
+struct t4095888389;
+struct t4039263322;
+struct t370693234;
+struct t2768987058;
+struct t2084254746;
+struct t2377511542;
+struct t3568528207;
+struct t4222920198;
+struct t3119749774;
+struct t3087541838;
+struct t4116791110;
+struct t2343587834;
+
+#include "t3012272455.h"
+#include "t2613941973.h"
+#include "t748511624.h"
+#include "t3525329788.h"
+#include "t3525329789.h"
+#include "t2116400401.h"
+
+struct  t1547119529  : public t3012272455
+{
+	t3384818676 * f3;
+	bool f4;
+	int32_t f5;
+	int32_t f6;
+	bool f7;
+	float f8;
+	bool f9;
+	float f10;
+	t3525329788  f11;
+	bool f12;
+	float f14;
+	float f15;
+	t3525329788  f16;
+	t3525329789  f17;
+	t3525329789  f18;
+	t3525329789  f19;
+	float f20;
+	float f21;
+	t3525329789  f22;
+	t1106661726 * f23;
+	t1106661726 * f24;
+	t437523947 * f25;
+	t2116400401  f26;
+	int32_t f27;
+	bool f28;
+	bool f29;
+	bool f30;
+	bool f31;
+	t3533968274 * f32;
+	t1177966580 * f33;
+	t1177966580 * f34;
+	t1177966580 * f35;
+	t2054974122 * f36;
+	t3937824918 * f37;
+	t3525329788  f38;
+	t2246592261 * f39;
+	t27321462 * f40;
+	t3525329789  f41;
+	float f42;
+	float f43;
+	float f44;
+	t896427542 * f45;
+	t284553113 * f46;
+	t4095888389 * f47;
+	t4039263322 * f48;
+	t370693234 * f49;
+	t2768987058 * f50;
+	t2084254746 * f51;
+	t2377511542 * f52;
+};
+struct t1547119529_SFs{
+	t1547119529 * f13;
+	t1177966580 * f53;
+	t1177966580 * f54;
+	t1177966580 * f55;
+	t2054974122 * f56;
+	t3937824918 * f57;
+	t1177966580 * f58;
+	t1177966580 * f59;
+	t1177966580 * f60;
+	t2054974122 * f61;
+	t3937824918 * f62;
+	t1177966580 * f63;
+	t1177966580 * f64;
+	t1177966580 * f65;
+	t2054974122 * f66;
+	t3937824918 * f67;
+	t3568528207 * f68;
+	t4222920198 * f69;
+	t3119749774 * f70;
+	t3087541838 * f71;
+	t4116791110 * f72;
+	t2343587834 * f73;
+};
