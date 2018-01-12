@@ -1,6 +1,6 @@
 # infinite-runner
 
-Infinite runner game made for RainbowJam16
+Infinite runner game made for RainbowJam16 with Unity 5.3.6
 
 Game developed for RainbowJam16 by Abertay University Team.
 
