@@ -14,4 +14,4 @@ Emily Peterson - 3D Character/Animation artist
 
 Matt Bausfield - Design and Consultation
 
-Matthew Wallace - Code and Design @imattwl
+Mateusz Zaremba - Code and Design @imattwl
